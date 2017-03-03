@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "BaseTabBarController.h"
 #import "BaseNavigationController.h"
 #import "HomePageViewController.h"
 #import "PodViewController.h"
@@ -28,26 +27,32 @@
     self.window.rootViewController = [self createTabBarVC];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
     return YES;
 }
 
 - (UIViewController *)createTabBarVC {
     HomePageViewController *homePageVC = [[HomePageViewController alloc] init];
-    homePageVC.title = @"主页";
+    homePageVC.tabBarItem.title = @"主页";
+    homePageVC.tabBarItem.image = [UIImage imageNamed:@"home"];
     BaseNavigationController *homePageNV = [[BaseNavigationController alloc] initWithRootViewController:homePageVC];
+    
     PodViewController *podVC = [[PodViewController alloc] init];
-    podVC.title = @"塘口";
+    podVC.tabBarItem.image = kImage(@"pod");
+    podVC.tabBarItem.title = @"塘口";
     BaseNavigationController *podNV = [[BaseNavigationController alloc] initWithRootViewController:podVC];
     
     NewsViewController *newsVC = [[NewsViewController alloc] init];
-    newsVC.title = @"资讯";
+    newsVC.tabBarItem.image = kImage(@"news");
+    newsVC.tabBarItem.title = @"资讯";
     BaseNavigationController *newsNV = [[BaseNavigationController alloc] initWithRootViewController:newsVC];
     
     SetViewController *setVC = [[SetViewController alloc] init];
-    setVC.title = @"设置";
+    setVC.tabBarItem.image = kImage(@"set");
+    setVC.tabBarItem.title = @"设置";
     BaseNavigationController *setNV = [[BaseNavigationController alloc] initWithRootViewController:setVC];
     
-    BaseTabBarController *baseVC = [[BaseTabBarController alloc] init];
+    UITabBarController *baseVC = [[UITabBarController alloc] init];
     baseVC.viewControllers = @[homePageNV, podNV, newsNV, setNV];
     return baseVC;
 }

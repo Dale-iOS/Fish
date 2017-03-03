@@ -17,6 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationBar.barTintColor = kRGB(2, 172, 229);
+    self.navigationBar.translucent  = NO;
 }
 
 - (void)didReceiveMemoryWarning {
